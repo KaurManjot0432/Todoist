@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import { json,urlencoded } from "body-parser";
+import postRouter from "./post/post-router";
 
 const app = express();
 const router = express.Router();
@@ -17,7 +18,7 @@ const customLogger = (req,res,next) => {
     next();
 }
 
-app.use('/api/v1',router);
+app.use('/api/post',postRouter);
 
 app.get('/', [customLogger, customLogger] , (req,res) => {
     // console.log(req);
@@ -38,29 +39,6 @@ app.post('/',(req,res) => {
 // router.post('/post', [customLogger, customLogger] , (req,res) => {
 //     res.send("OK Router POST");
 // });
-
-router
-    .route('/post')
-    .get((req,res) => {
-        res.send("OK Router get");
-    })
-    .post((req,res) => {
-        res.send("OK Router post");
-    });
-
-router
-    .route('/post/:id')
-    .put((req,res) => {
-        // console.log(req.body);
-        console.log(req.params);
-        res.send("OK Router put");
-    })
-    .patch((req,res) => {
-        res.send("OK Router patch");
-    })
-    .delete((req,res) => {
-        res.send("OK Router delete");
-    });
 
 export const start = () => {
     app.listen(3020,() => {
