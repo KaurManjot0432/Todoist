@@ -2,6 +2,8 @@ import express from "express";
 import morgan from "morgan";
 import { json,urlencoded } from "body-parser";
 import postRouter from "./post/post-router";
+import userRouter from "./user/user-router";
+import { connect } from "./util/database";
 
 const app = express();
 const router = express.Router();
@@ -19,6 +21,7 @@ const customLogger = (req,res,next) => {
 }
 
 app.use('/api/post',postRouter);
+app.use('/api/user',userRouter);
 
 app.get('/', [customLogger, customLogger] , (req,res) => {
     // console.log(req);
@@ -40,7 +43,8 @@ app.post('/',(req,res) => {
 //     res.send("OK Router POST");
 // });
 
-export const start = () => {
+export const start = async () => {
+    await connect();
     app.listen(3020,() => {
         console.log("Server is running");
     })
