@@ -13,15 +13,13 @@ export const getOne = model => async (req,res) => {
 }
 
 export const getMany = model => async (req,res) => {
-    try{
-        const docs = await model.find({}).exec();
-        if(!docs){
-            return res.status(400).end();
+    try {
+        const doc = await model.find({}).exec();
+        if(!doc) {
+            return res.status(404).end();
         }
-        console.log("bringing all docs");
-        console.log(docs);
-        res.status(200).end();
-    } catch(e){
+        res.status(200).json({data: doc});
+    } catch(e) {
         console.error(e);
         res.status(400).end();
     }
