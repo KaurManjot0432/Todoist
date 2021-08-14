@@ -3,13 +3,12 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
     email : {
         type : String,
-        required : true,
-        unique : true
+        required : true
     },
     password : {
         type : String,
-        required : true
+        minlength : 10
     }
-},{timestamps: true});
+});
 
-export const User = mongoose.model('user',userSchema); 
+export const user = mongoose.model('user',userSchema);

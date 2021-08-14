@@ -4,22 +4,14 @@ const router = Router();
 
 
 router
-.route('/post')
-.get(controllers.getOne)
+.route('/')
+.get(controllers.getMany)
 .post(controllers.createOne);
 
 router
-.route('/post/:id')
-.put((req,res) => {
-    // console.log(req.body);
-    console.log(req.params);
-    res.send("OK Router put");
-})
-.patch((req,res) => {
-    res.send("OK Router patch");
-})
-.delete((req,res) => {
-    res.send("OK Router delete");
-});
+.route('/:id')
+.get(controllers.getOne)
+.patch(controllers.updateOne)
+.delete(controllers.deleteOne);
 
 export default router;
