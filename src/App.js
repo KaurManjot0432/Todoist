@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './myComponents/header';
+import Todos from './myComponents/Todos';
+import { useState } from 'react';
+import { AddTodo } from './myComponents/AddTodo';
 
 function App() {
+
+
+  const onDelete = (todo) => {
+    console.log("I am deleted",todo);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+  <Header title="MY TODO'S APP" searchBar={false}/>
+  <AddTodo/>
+  <Todos/>
+
+  {/* <Todos onDelete={onDelete}//> */}
+  
+  </>
   );
 }
 
