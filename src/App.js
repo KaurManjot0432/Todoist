@@ -11,11 +11,13 @@ function App() {
     console.log("I am deleted",todo);
   }
 
+  const [todos, getTodos] = useState('');
+
   return (
   <>
   <Header title="MY TODO'S APP" searchBar={false}/>
-  <AddTodo/>
-  <Todos/>
+  <AddTodo todos={todos} getTodos={getTodos} />
+  <Todos todos={todos} getTodos={getTodos}/>
 
   {/* <Todos onDelete={onDelete}//> */}
   

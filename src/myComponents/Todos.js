@@ -2,9 +2,7 @@ import react, { useEffect, useState } from 'react';
 import axios from 'axios';
 import  { TodoItem } from './TodoItem';
 
-export default function Todos() {
-
-    const [todos, getTodos] = useState('');
+export default function Todos({todos, getTodos}) {
 
     const url = 'localhost:3020/api/post/';
 
