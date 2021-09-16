@@ -37,12 +37,14 @@ export const createOne = model => async (req,res) => {
 }
 
 export const updateOne = model => async (req,res) => {
+    console.log(req.body);
     try{
        const doc = await model.findOneAndUpdate({_id : req.params.id}, req.body,{new:true}).exec();
        if(!doc){
            return res.status(400).end();
        } 
-       console.log(doc);
+       console.log("updated");
+    //    console.log(doc.title);
        res.status(200).json({data:doc});
     } catch(e){
         console.error(e);
